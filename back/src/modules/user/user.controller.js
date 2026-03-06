@@ -25,16 +25,18 @@ class UserController {
         }
     }
     async update(req, res) {
+        const id = Number(req.params.id);
         try{
-            const user = await userService.update(req.params.id, req.body);
+            const user = await userService.update(id, req.body);
             res.json(user);
         }catch (error) {
             res.status(500).json({error: error.message});
         }
     }
     async delete(req, res) {
+        const id = Number(req.params.id);
         try{
-            await userService.delete(req.params.id);
+            await userService.delete(id);
             res.status(204).send();
         }catch (error) {
             res.status(500).json({error: error.message});

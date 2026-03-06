@@ -1,13 +1,14 @@
 import {Router} from 'express';
 import UserController from './user.controller.js';
-import { admin, protect } from '../../middleware/auth.middleware.js';
+import {protect} from '../../middleware/auth.protect.js';
+import {admin} from '../../middleware/auth.admin.js';
 
-const router = Router();
+const userRouter = Router();
 const userController = new UserController();
 
-router.get('/', protect, admin, async (req, res) => userController.findAll(req, res));
-router.get('/:id', protect, admin,  async (req, res) => userController.findById(req, res));
-router.put('/:id', protect,  async (req, res) => userController.update(req, res));
-router.delete('/:id', protect,  async (req, res) => userController.delete(req, res));
+userRouter.get('/', protect, admin, async (req, res) => userController.findAll(req, res));
+userRouter.get('/:id', protect, admin,  async (req, res) => userController.findById(req, res));
+userRouter.put('/:id', protect,  async (req, res) => userController.update(req, res));
+userRouter.delete('/:id', protect,  async (req, res) => userController.delete(req, res));
 
-export default router;
+export default userRouter;
