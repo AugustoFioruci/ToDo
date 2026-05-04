@@ -171,7 +171,13 @@ docker-compose exec back npm run test:db
 
 ## 📝 Migrações do Banco de Dados
 
-As migrações são executadas automaticamente ao iniciar os containers. Para criar novas migrações:
+Após iniciar os containers com `docker-compose up`, execute as migrações:
+
+```bash
+docker-compose exec back npx prisma migrate deploy
+```
+
+Para criar novas migrações:
 
 ```bash
 docker-compose exec back npx prisma migrate dev --name nome_da_migracao
